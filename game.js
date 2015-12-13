@@ -349,7 +349,7 @@ GreatNation.game.prototype = {
 	            
             case 9:
 	            this.newsBanner.frame = 1;
-	            this.newsText_INFO.text = ( 'INVASION!\nSOME THEIVES WANT YOUR FOOD!\nFIGHT THEM?' );
+	            this.newsText_INFO.text = ( 'INVASION!\nSOME THIEVES WANT YOUR FOOD!\nFIGHT THEM?' );
                 this.newsText_passAffect.text = ( 'POWER-' );
                 this.newsText_vetoAffect.text = ( 'FOOD-' );
                 this.newsEffect = {

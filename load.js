@@ -45,7 +45,7 @@ GreatNation.load.prototype = {
 		
 		this.stage.backgroundColor = "#54aff7";
 		
-		game.state.start( 'end' );
+		game.state.start( 'menu' );
 		
 	}
 	
