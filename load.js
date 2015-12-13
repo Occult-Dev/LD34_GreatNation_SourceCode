@@ -10,6 +10,18 @@ GreatNation.load.prototype = {
 		    this.preloadBar2.anchor.set( 0.5 );
 		this.load.setPreloadSprite( this.preloadBar2 );
 		
+		this.load.audio( 'gameTheme', 'media/audio/gameTheme.ogg' );
+		this.load.audio( 'statsTheme', 'media/audio/statsTheme.ogg' );
+		this.load.audio( 'endTheme', 'media/audio/endTheme.ogg' );
+		
+		this.load.audio( 'passClick', 'media/audio/passClick.ogg' );
+		this.load.audio( 'vetoClick', 'media/audio/vetoClick.ogg' );
+		this.load.audio( 'newsSFX', 'media/audio/newsSFX.ogg' );
+		this.load.audio( 'paperSFX', 'media/audio/paperSFX.ogg' );
+		this.load.audio( 'statPositive', 'media/audio/statPositive.ogg' );
+		this.load.audio( 'statNegative', 'media/audio/statNegative.ogg' );
+		this.load.audio( 'execution', 'media/audio/execution.ogg' );
+		
 	    this.load.bitmapFont( 'newsFont', 'media/GreatNation_Font.png', 'media/GreatNation_Font.fnt' );
 	    this.load.bitmapFont( 'affectFont', 'media/GreatNation_Font2.png', 'media/GreatNation_Font2.fnt' );
 	    this.load.bitmapFont( 'roundsFont', 'media/GreatNation_Font3.png', 'media/GreatNation_Font3.fnt' );
@@ -24,12 +36,16 @@ GreatNation.load.prototype = {
 		this.load.spritesheet( 'newsBanner', 'media/newsBanner.png', 220, 80 );
 		
 	},
-
-	update: function(){
+    
+	create: function(){
+		
+		GreatNation.music = { gameTheme: game.add.audio( 'gameTheme', 1, true ), statsTheme: game.add.audio( 'statsTheme', 1, true ), endTheme: game.add.audio( 'endTheme', 1, true ) };
+		
+		GreatNation.SFX = { passClick: game.add.audio( 'passClick' ), vetoClick: game.add.audio( 'vetoClick' ), news: game.add.audio( 'newsSFX' ), paper: game.add.audio( 'paperSFX' ), statPositive: game.add.audio( 'statPositive' ), statNegative: game.add.audio( 'statNegative' ), execution: game.add.audio( 'execution' ) };
 		
 		this.stage.backgroundColor = "#54aff7";
 		
-		game.state.start( 'game', true, false, { population: 0, food: 0, money: 0, power: 0, love: 0 }, true, true, true );
+		game.state.start( 'end' );
 		
 	}
 	

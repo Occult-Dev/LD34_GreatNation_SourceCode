@@ -4,6 +4,9 @@ GreatNation.game.prototype = {
     
     init: function( stats, train, discover, defend ){
         
+        GreatNation.music.statsTheme.stop();
+        GreatNation.music.gameTheme.play();
+        
         GreatNation.game.prototype.nationStats = stats;
         
         this.train = train;
@@ -65,6 +68,8 @@ GreatNation.game.prototype = {
 		        this.roundsText.text = this.newsAmnt + ' / 10';
 		        
 		    }
+		    
+		    GreatNation.SFX.news.play();
 		    
 		    this.makeNewNews();
 		    
@@ -566,16 +571,15 @@ GreatNation.game.prototype = {
 	    
 	    if( this.votable ){
             
-            if( GreatNation.passBtn.alpha == 1 ){
+            if( GreatNation.passBtn.alpha != 1 ){
                 
-                this.newsEffect.pass();
-                
-            }else{
-                
-                //Unable To Defend
                 return;
                 
             }
+            
+            GreatNation.SFX.passClick.play();
+            
+            this.newsEffect.pass();
             	                 
 	        this.amntPassed++;
 	        GreatNation.total.passed++;
@@ -606,7 +610,9 @@ GreatNation.game.prototype = {
 	veto: function(){
 	    
 	    if( this.votable ){
-		        
+            
+            GreatNation.SFX.vetoClick.play();
+            		        
             this.newsEffect.veto();
 		        
             this.amntVetoed++;

@@ -4,6 +4,9 @@ GreatNation.end.prototype = {
     
     init: function(){
         
+        GreatNation.music.statsTheme.stop();
+        GreatNation.music.endTheme.play();
+        
         this.lines = [
         
             "DEAR GREAT AND GLORIOUS LEADER...",
@@ -45,7 +48,7 @@ GreatNation.end.prototype = {
         this.bloodSplatter = game.make.image( 0, 0, 'blood' );
             this.bloodSplatter.scale.set( 10 );
             this.bloodSplatter.inputEnabled = true;
-            this.bloodSplatter.events.onInputDown.add( function(){ game.state.start( 'load' ); }, this );
+            this.bloodSplatter.events.onInputDown.add( function(){ game.state.start( 'menu' ); }, this );
         
         this.totalPassed = game.make.bitmapText( 205, 100, 'affectFont', 'TOTAL PASSED: '  + GreatNation.total.passed );
         this.totalVetoed = game.make.bitmapText( 205, 140, 'affectFont', 'TOTAL VETOED: ' + GreatNation.total.vetoed );
@@ -62,9 +65,15 @@ GreatNation.end.prototype = {
             
             this.bg.events.onInputDown.add( function(){
                 
-                game.add.existing( this.bloodSplatter );
-                game.add.existing( this.totalPassed );
-                game.add.existing( this.totalVetoed );
+                GreatNation.SFX.execution.play();
+                
+                game.time.events.add( 666, function(){
+                    
+                    game.add.existing( this.bloodSplatter );
+                    game.add.existing( this.totalPassed );
+                    game.add.existing( this.totalVetoed );
+                    
+                }, this );
                 
             }, this );
             

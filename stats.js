@@ -4,6 +4,11 @@ GreatNation.stats.prototype = {
     
     init: function( stats ){
         
+        GreatNation.music.gameTheme.stop();
+        GreatNation.music.statsTheme.play();
+        
+        this.statSFX = [];
+        
         this.displayWhat = 1;
         
         this.train = true;
@@ -23,9 +28,13 @@ GreatNation.stats.prototype = {
             
             this.statInfo.food = 'HUNGRY PEOPLE LOOSE SOME LOVE FOR YOU';
             
+            this.statSFX[1] = GreatNation.SFX.statNegative;
+            
         }else{
             
             this.statInfo.food = 'YOU\'RE PEOPLE ARE STUFFED';
+            
+            this.statSFX[1] = GreatNation.SFX.statPositive;
             
         }
         
@@ -63,9 +72,13 @@ GreatNation.stats.prototype = {
                     
             }
             
+            this.statSFX[4] = GreatNation.SFX.statNegative;
+            
         }else{
             
             this.statInfo.love = 'YOU\'RE PEOPLE ARE HAPPY';
+            
+            this.statSFX[4] = GreatNation.SFX.statPositive;
             
         }
         
@@ -75,9 +88,13 @@ GreatNation.stats.prototype = {
             
             this.discover = false;
             
+            this.statSFX[0] = GreatNation.SFX.statNegative;
+            
         }else{
             
             this.statInfo.population = 'YOU HAVE A BUSTLING NATION';
+            
+            this.statSFX[0] = GreatNation.SFX.statPositive;
             
         }
         
@@ -87,9 +104,13 @@ GreatNation.stats.prototype = {
             
             this.train = false;
             
+            this.statSFX[2] = GreatNation.SFX.statNegative;
+            
         }else{
             
             this.statInfo.money = 'YOU ARE WEALTHY';
+            
+            this.statSFX[2] = GreatNation.SFX.statPositive;
             
         }
         
@@ -99,9 +120,13 @@ GreatNation.stats.prototype = {
             
             this.defend = false;
             
+            this.statSFX[3] = GreatNation.SFX.statNegative;
+            
         }else{
             
             this.statInfo.power = 'YOU ARE STRONG, AND SCARY';
+            
+            this.statSFX[3] = GreatNation.SFX.statPositive;
             
         }
         
@@ -125,6 +150,7 @@ GreatNation.stats.prototype = {
                         this.statText.anchor.setTo( 1, 0 );
                         this.statText.tint = GreatNation.game.prototype.convertStat( this.stats.population ).color;
                     game.add.bitmapText( game.width / 2, 240, 'newsFont', this.statInfo.population ).anchor.setTo( 0.5, 0 );
+                    this.statSFX[ this.displayWhat - 1 ].play();
                     break;
                     
                 case 2:
@@ -133,6 +159,7 @@ GreatNation.stats.prototype = {
                         this.statText.anchor.setTo( 1, 0 );
                         this.statText.tint = GreatNation.game.prototype.convertStat( this.stats.food ).color;
                     game.add.bitmapText( game.width / 2, 290, 'newsFont', this.statInfo.food ).anchor.setTo( 0.5, 0 );
+                    this.statSFX[ this.displayWhat - 1 ].play();
                     break;
                     
                 case 3:
@@ -141,6 +168,7 @@ GreatNation.stats.prototype = {
                         this.statText.anchor.setTo( 1, 0 );
                         this.statText.tint = GreatNation.game.prototype.convertStat( this.stats.money ).color;
                     game.add.bitmapText( game.width / 2, 340, 'newsFont', this.statInfo.money ).anchor.setTo( 0.5, 0 );
+                    this.statSFX[ this.displayWhat - 1 ].play();
                     break;
                     
                 case 4:
@@ -149,6 +177,7 @@ GreatNation.stats.prototype = {
                         this.statText.anchor.setTo( 1, 0 );
                         this.statText.tint = GreatNation.game.prototype.convertStat( this.stats.power ).color;
                     game.add.bitmapText( game.width / 2, 390, 'newsFont', this.statInfo.power ).anchor.setTo( 0.5, 0 );
+                    this.statSFX[ this.displayWhat - 1 ].play();
                     break;
                     
                 case 5:
@@ -157,6 +186,7 @@ GreatNation.stats.prototype = {
                         this.statText.anchor.setTo( 1, 0 );
                         this.statText.tint = GreatNation.game.prototype.convertStat( this.stats.love ).color;
                     game.add.bitmapText( game.width / 2, 440, 'newsFont', this.statInfo.love ).anchor.setTo( 0.5, 0 );
+                    this.statSFX[ this.displayWhat - 1 ].play();
                     break;
                     
                 case 7:
@@ -183,6 +213,8 @@ GreatNation.stats.prototype = {
         
         game.add.tween( this.bg ).to( { y: 0 }, 500, Phaser.Easing.Elastic.Out, true );
         game.add.tween( this.infoText ).to( { y: 160 }, 500, Phaser.Easing.Elastic.Out, true );
+        
+        GreatNation.SFX.paper.play();
 
     }
 
