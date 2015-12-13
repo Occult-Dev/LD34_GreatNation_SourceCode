@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<meta charset="utf-8">
+	
+	<title>Great Nation</title>
+	
+	<script type="text/javascript" src="lib/phaser.min.js"></script>
+	
+	<script type="text/javascript" src="boot.js"></script>
+	<script type="text/javascript" src="load.js"></script>
+	<script type="text/javascript" src="game.js"></script>
+	<script type="text/javascript" src="stats.js"></script>
+	<script type="text/javascript" src="end.js"></script>
+	
+	<style>
+	    
+	    html, body{
+	        
+	        padding: 0;
+	        margin: 0;
+	        
+	        background-color: #555;
+	        
+	    }
+	    
+	    #gameDIV{
+	        
+	        width: 500px;
+	        height: 500px;
+	        
+	        top: 0;
+	        left: 0;
+	        right: 0;
+	        bottom: 0;
+	        
+	        margin: auto;
+	        position: absolute;
+	        
+	    }
+	    
+	</style>
+	
+</head>
+<body>
+    
+    <div id="gameDIV"></div>
+    
+    <script type="text/javascript">
+        
+        var screenSize = document.getElementById( 'gameDIV' );
+        
+        var game = new Phaser.Game( screenSize.offsetWidth, screenSize.offsetHeight, Phaser.AUTO, 'gameDIV', this, false, false );
+        
+        game.state.add( 'boot', GreatNation.boot );
+        game.state.add( 'load', GreatNation.load );
+        game.state.add( 'game', GreatNation.game );
+        game.state.add( 'stats', GreatNation.stats );
+        game.state.add( 'end', GreatNation.end );
+        
+        game.state.start( 'boot' );
+        
+    </script>
+    
+</body>
+</html>
